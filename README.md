@@ -3,6 +3,8 @@
 This repo implements a reproduction of an issue where a certain pattern of reading a .NET HttpClient content stream
 results in data corruption.
 
+See: [dotnet/aspire#6745](https://github.com/dotnet/aspire/issues/6745)
+
 ## Running
 
 To run the application, start the HttpContentStreamRepro.AppHost project and in the Aspire dashboard, open the logs for
@@ -33,6 +35,12 @@ when using the local stream (see `StreamSource` under below options).
 - Delay: The length of time to wait to simulate fake "I/O". Default: 15 milliseconds.
 
 The default options trigger the issue when I run the repro on my machine.
+
+### Toggling the Aspire Proxy
+
+In the AppHost Program.cs, there's also an `isProxied` variable that toggles the Aspire proxy. `true` is the default to
+use the Aspire proxy, which triggers the issue. Setting it to `false` will disable the proxy for the web resource and
+does not trigger the issue.
 
 ## The Solution
 
